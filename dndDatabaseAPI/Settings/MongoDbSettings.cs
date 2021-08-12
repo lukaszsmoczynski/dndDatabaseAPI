@@ -11,11 +11,7 @@ namespace dndDatabaseAPI.Settings
         public string Password { get; set; }
         public string ConnectionString
         {
-            get  {
-                Console.WriteLine($"mongodb://{Uri.EscapeDataString(Username)}:{Uri.EscapeDataString(Password)}@{Host}:{Port}");
-                Debug.WriteLine($"mongodb://{Uri.EscapeDataString(Username)}:{Uri.EscapeDataString(Password)}@{Host}:{Port}");
-                return $"mongodb://{Uri.EscapeDataString(Username)}:{Uri.EscapeDataString(Password)}@{Host}:{Port}";
-            }
+            get  => $"mongodb://{Uri.EscapeDataString(Username)}:{Uri.EscapeDataString(Password)}@{Host}:{Port}";
         }
     }
 }
