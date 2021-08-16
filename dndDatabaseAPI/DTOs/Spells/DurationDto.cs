@@ -1,23 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace dndDatabaseAPI.DTOs.Spells
+﻿namespace dndDatabaseAPI.DTOs.Spells
 {
-    public enum SpellDurationUnitDto
+    public record DurationDto
     {
-        Instant,
-        Round,
-        Minute,
-        Hour,
-        Day,
-        Special,
-        UntilDispelledOrTriggered
-    }
-
-    public class DurationDto
-    {
-        public int Amount { get; set; }
-        public SpellDurationUnitDto Unit { get; set; }
+        public bool UpTo { get; set; }
+        public int Amount { get; init; }
+        public SpellDurationUnitDto Unit { get; init; }
+        public bool Contentration { get; init; }
     }
 }

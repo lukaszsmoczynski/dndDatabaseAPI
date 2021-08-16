@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace dndDatabaseAPI.DTOs.Spells
 {
-    public class ComponentsDto
+    public record ComponentsDto
     {
-        public bool Verbal { get; set; } = false;
-        public bool Somatic { get; set; } = false;
-        public bool Material { get; set; } = false;
+        public bool Verbal { get; init; }
+        public bool Somatic { get; init; }
+        public bool Material { get; init; }
 
-        public List<MaterialComponentDto> MaterialComponents { get; set; } = new List<MaterialComponentDto>();
+        public IEnumerable<MaterialComponentDto> MaterialComponents { get; init; }
     }
 }

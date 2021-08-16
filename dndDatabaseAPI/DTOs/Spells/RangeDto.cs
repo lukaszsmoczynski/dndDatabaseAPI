@@ -1,25 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace dndDatabaseAPI.DTOs.Spells
 {
-    public enum SpellRangeUnitDto
+    public record RangeDto
     {
-        Self,
-        Touch,
-        Foot,
-        Mile,
-        Sight,
-        Special,
-        Unlimited
-    }
-
-    public class RangeDto
-    {
-        public int Amount { get; set; }
+        public int Amount { get; init; }
         [Required]
-        public SpellRangeUnitDto Unit { get; set; }
+        public SpellRangeUnitDto Unit { get; init; }
     }
 }

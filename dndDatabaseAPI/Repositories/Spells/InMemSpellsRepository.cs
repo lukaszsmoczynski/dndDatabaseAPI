@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace dndDatabaseAPI.Spells.Repositories
 {
-    public class InMemSpellsRepository : IRepository<Spell>
+    public class InMemSpellsRepository : ISpellsRepository
     {
-        private readonly List<Spell> spells = new();
+        private readonly IList<Spell> spells = new List<Spell>();
 
         public async Task<IEnumerable<Spell>> GetAllAsync()
         {
@@ -23,18 +23,35 @@ namespace dndDatabaseAPI.Spells.Repositories
 
         public async Task CreateAsync(Spell t)
         {
-            //throw new NotImplementedException();
+            spells.Add(t);
             await Task.CompletedTask;
         }
 
-        public Task UpdateAsync(Spell t)
+        public async Task UpdateAsync(Spell t)
         {
-            throw new NotImplementedException();
+            var existingSpell = spells.Where(spell => spell.Id.Equals(t.Id)).SingleOrDefault();
+            if (existingSpell is null)
+            {
+                //throw NotFound();
+                return;
+            }
+            spells.Remove(existingSpell);
+            spells.Add(t);
+
+            await Task.CompletedTask;
         }
 
-        public Task DeleteAsync(Spell t)
+        public async Task DeleteAsync(Spell t)
         {
-            throw new NotImplementedException();
+            var existingSpell = spells.Where(spell => spell.Id.Equals(t.Id)).SingleOrDefault();
+            if (existingSpell is null)
+            {
+                //throw NotFound();
+                return;
+            }
+            spells.Remove(existingSpell);
+
+            await Task.CompletedTask;
         }
     }
 }

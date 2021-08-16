@@ -7,6 +7,6 @@ namespace dndDatabaseAPI.Models.Spells
     {
         public int Level { get; set; }
         public string Description { get; set; }
-        public List<Roll> Rolls { get; set; } = new List<Roll>();
+        public IEnumerable<Roll> Rolls { get; set; }
     }
 }

@@ -1,41 +1,57 @@
 ﻿using dndDatabaseAPI.Models.Characters.Classes;
-using dndDatabaseAPI.Models.Spells;
 using dndDatabaseAPI.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace dndDatabaseAPI.Character.Repositories
+namespace dndDatabaseAPI.Repositories.Character
 {
-    public class InMemClassesRepository : IRepository<ICharacterClass>
+    public class InMemClassesRepository : IClassesRepository
     {
-        private readonly List<CharacterClass> characterClass = new();
+        private readonly IList<Class> classes = new List<Class>();
 
-        public Task<IEnumerable<ICharacterClass>> GetAllAsync()
+        public async Task<IEnumerable<Class>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await Task.FromResult(classes);
         }
 
-        public async Task<ICharacterClass> GetAsync(Guid id)
+        public async Task<Class> GetAsync(Guid id)
         {
-            return await Task.FromResult(characterClass.Where(characterClass => characterClass.Id.Equals(id)).SingleOrDefault()); 
-            //return characterClass.Where(characterClass => characterClass.Name.Equals(id)).SingleOrDefault();
+            return await Task.FromResult(classes.Where(_class => _class.Id.Equals(id)).SingleOrDefault());
         }
 
-        public Task CreateAsync(ICharacterClass t)
+        public async Task CreateAsync(Class t)
         {
-            throw new NotImplementedException();
+            classes.Add(t);
+            await Task.CompletedTask;
         }
 
-        public Task UpdateAsync(ICharacterClass t)
+        public async Task UpdateAsync(Class t)
         {
-            throw new NotImplementedException();
+            var existingSpell = classes.Where(_class => _class.Id.Equals(t.Id)).SingleOrDefault();
+            if (existingSpell is null)
+            {
+                //throw NotFound();
+                return;
+            }
+            classes.Remove(existingSpell);
+            classes.Add(t);
+
+            await Task.CompletedTask;
         }
 
-        public Task DeleteAsync(ICharacterClass t)
+        public async Task DeleteAsync(Class t)
         {
-            throw new NotImplementedException();
+            var existingSpell = classes.Where(_class => _class.Id.Equals(t.Id)).SingleOrDefault();
+            if (existingSpell is null)
+            {
+                //throw NotFound();
+                return;
+            }
+            classes.Remove(existingSpell);
+
+            await Task.CompletedTask;
         }
     }
 }

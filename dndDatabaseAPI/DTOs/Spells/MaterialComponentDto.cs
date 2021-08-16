@@ -1,9 +1,10 @@
 ﻿namespace dndDatabaseAPI.DTOs.Spells
 {
-    public class MaterialComponentDto
+    public record MaterialComponentDto
     {
-        public string Name { get; set; }
-        public float? Value { get; set; }
-        public bool Consumed { get; set; }
+        public string Name { get; init; }
+        public float? Value { get; init; }
+        public bool Consumed { get; init; }
+        public string? Description { get; init; }
     }
 }

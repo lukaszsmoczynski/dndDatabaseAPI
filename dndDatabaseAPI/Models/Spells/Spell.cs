@@ -2,7 +2,6 @@
 using dndDatabaseAPI.Models.Dices;
 using System;
 using System.Collections.Generic;
-using System.IO;
 
 namespace dndDatabaseAPI.Models.Spells
 {
@@ -12,15 +11,15 @@ namespace dndDatabaseAPI.Models.Spells
         public string Name { get; set; }
         public int Level { get; set; }
         public School School { get; set; }
-        public CastTime CastTime { get; set; } = new CastTime();
-        public Range Range { get; set; } = new Range();
-        public Components Components { get; set; } = new Components();
-        public Duration Duration { get; set; } = new Duration();
+        public CastTime CastTime { get; set; }
+        public Range Range { get; set; }
+        public Components Components { get; set; }
+        public Duration Duration { get; set; }
         public string Description { get; set; }
-        public List<Roll> Rolls { get; set; } = new List<Roll>();
-        public List<ICasterClass> Classes { get; set; } = new List<ICasterClass>();
+        public IEnumerable<Roll> Rolls { get; set; }
+        public IEnumerable<string> Classes { get; set; }
         public bool Ritual { get; set; }
-        public List<Upcasting> Upcasting { get; set; } = new List<Upcasting>();
+        public IEnumerable<Upcasting> Upcasting { get; set; }
         //public Stream Image { get; set; }
     }
 }

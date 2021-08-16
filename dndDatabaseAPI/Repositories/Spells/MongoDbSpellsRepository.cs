@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace dndDatabaseAPI.Spells.Repositories
 {
-    public class MongoDbSpellsRepository : IRepository<Spell>
+    public class MongoDbSpellsRepository : ISpellsRepository
     {
         private const string databaseName = "dndDatabase";
         private const string collectionName = "spells";

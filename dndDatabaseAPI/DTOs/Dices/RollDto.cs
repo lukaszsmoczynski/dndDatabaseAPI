@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace dndDatabaseAPI.DTOs.Dices
 {
-    public class RollDto
+    public record RollDto
     {
-        public string Description { get; set; }
-        public Dictionary<uint, int> Dices { get; set; }
+        public string Description { get; init; }
+        public IDictionary<uint, int> Dices { get; init; }
     }
 }

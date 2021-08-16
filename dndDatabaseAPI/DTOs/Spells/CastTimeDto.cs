@@ -1,21 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace dndDatabaseAPI.DTOs.Spells
+﻿namespace dndDatabaseAPI.DTOs.Spells
 {
-    public enum SpellTimeUnitDto
+    public record CastTimeDto
     {
-        BonusAction,
-        Reaction,
-        Action,
-        Round,
-        Minute,
-        Hour
-    }
-
-    public class CastTimeDto
-    {
-        public int Amount { get; set; }
-        [Required]
-        public SpellTimeUnitDto Unit { get; set; }
+        public int Amount { get; init; }
+        public SpellTimeUnitDto Unit { get; init; }
     }
 }
